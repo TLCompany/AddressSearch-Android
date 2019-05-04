@@ -5,6 +5,82 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         tools:context=".AddressSearchActivity">
+
+    <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#eeeeee"
+            android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="50dp"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/close"
+            android:id="@+id/backButton" android:background="#00FFFFFF" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/textView"/>
+    <TextView
+            android:text="주소검색"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleTextView"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
+            app:layout_constraintBottom_toBottomOf="@+id/backButton" android:textStyle="bold"
+            android:textColor="#000000" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+            android:background="@drawable/edit_text_border"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:paddingLeft="12dp"
+            android:id="@+id/searchTermEditText"
+            android:imeOptions="actionSearch"
+            app:layout_constraintTop_toBottomOf="@+id/textView" android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="10dp" app:layout_constraintEnd_toStartOf="@+id/searchButton"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"/>
+    <Button
+            android:text="검색"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:id="@+id/searchButton" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp"
+            android:background="@drawable/search_button" android:textColor="#ffffff" android:textStyle="bold"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/searchTermEditText" app:layout_constraintTop_toTopOf="@+id/searchTermEditText"/>
+    <ImageButton
+            android:layout_width="123dp"
+            android:layout_height="26dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/logoButton" android:scaleType="centerCrop"
+            android:background="@drawable/rounded_logo"
+            app:layout_constraintEnd_toEndOf="@+id/searchButton"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton" android:layout_marginTop="10dp"/>
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/logoButton" android:id="@+id/addressRecyclerView"
+            tools:listitem="@layout/address_list_item"/>
+    <ImageButton
+            android:layout_width="124dp"
+            android:layout_height="26dp" app:srcCompat="@drawable/provider"
+            android:id="@+id/providerButton"
+            android:scaleType="fitCenter" app:layout_constraintEnd_toStartOf="@+id/logoButton"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintTop_toTopOf="@+id/logoButton"
+            app:layout_constraintBottom_toBottomOf="@+id/logoButton" android:background="#ffffff"/>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/resultTextView" app:layout_constraintStart_toStartOf="@+id/searchTermEditText"
+            app:layout_constraintEnd_toStartOf="@+id/providerButton"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="@+id/providerButton"
+            app:layout_constraintBottom_toBottomOf="@+id/providerButton"/>
 
 </android.support.constraint.ConstraintLayout>
