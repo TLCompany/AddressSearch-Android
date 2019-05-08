@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class AddressExampleActivity : AppCompatActivity() {
 
     lateinit var addressSearchHelper: AddressSearchHelper
     private val confmKey = "U01TX0FVVEgyMDE5MDQyODE5NTM0NjEwODY4ODQ="
 
     companion object {
-        val TAG = "MainActivity"
+        val TAG = "AddressExampleActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
