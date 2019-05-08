@@ -1,5 +1,5 @@
-apply plugin: 'com.android.application'
-//apply plugin: 'com.android.library'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.tlsolution.tlsaddresssearchhelper"
+//        applicationId "com.tlsolution.tlsaddresssearchhelper"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
