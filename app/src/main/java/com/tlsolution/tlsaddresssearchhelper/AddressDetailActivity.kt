@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_add_detail.*
 
-class AddDetailActivity : AppCompatActivity() {
+class AddressDetailActivity : AppCompatActivity() {
 
     private var address: Address? = null
 
     companion object {
-        val TAG = "AddDetailActivity"
+        val TAG = "AddressDetailActivity"
         val EXIT_KEY = "EXIT"
         val ADDRS_KEY = "ADDRESS"
 
@@ -23,7 +23,7 @@ class AddDetailActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_add_detail)
         supportActionBar?.hide()
-        this.address = intent.getSerializableExtra(AddressSearchActivity.ADDRESS_KEY) as Address
+        this.address = intent.getSerializableExtra(AddressSearchListActivity.ADDRESS_KEY) as Address
         Log.d(TAG, this.address.toString())
         displayAddress(this.address!!)
         backButton.setOnClickListener {
@@ -48,7 +48,7 @@ class AddDetailActivity : AppCompatActivity() {
 
     private fun displayAddress(address: Address) {
         jbAddrsTextView2.setText(address.jibunAddr)
-        rdAddrsTextView2.setText(address.rdAddr)
+        rdAddrsTextView2.setText(address.roadAddr)
         val zipCode = "우편번호: ${address.zipNo}"
         zipCodeTextView.setText(zipCode)
     }

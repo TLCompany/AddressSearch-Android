@@ -23,10 +23,10 @@ import kotlinx.android.synthetic.main.address_list_item.view.*
 import okhttp3.*
 import java.io.IOException
 
-class AddressSearchActivity: AppCompatActivity() {
+class AddressSearchListActivity: AppCompatActivity() {
 
     companion object {
-        val TAG = "AddressSearchActivity"
+        val TAG = "AddressSearchList"
         val ADDRESS_KEY = "ADDRESS"
         val REQUEST_CODE = 1111
     }
@@ -37,12 +37,14 @@ class AddressSearchActivity: AppCompatActivity() {
             adapter.addresses = value
             runOnUiThread {
                 adapter.notifyDataSetChanged()
-                val resultString = "검색결과: ${addresses.size}건"
+                val resultString = "검색결과(${addresses.size}건)"
                 resultTextView.setText(resultString)
             }
         }
 
     private lateinit var adapter: AddressAdapter
+    private val confmKey = "U01TX0FVVEgyMDE5MDQyOTE1MTYwNTEwODY5MDE="
+    private val url = "http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +56,12 @@ class AddressSearchActivity: AppCompatActivity() {
         addressRecyclerView.adapter = this.adapter
         addressRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        backButton.setOnClickListener {
-            finish()
-        }
+        backButton.setOnClickListener { finish() }
+        searchButton.setOnClickListener { search() }
+        logoButton.setOnClickListener { openIntentWithURL("http://www.tlsolution.co.kr/") }
+        providerButton.setOnClickListener { openIntentWithURL("http://www.juso.go.kr/addrlink/main.do") }
 
         searchTermEditText.setOnEditorActionListener(object: TextView.OnEditorActionListener {
-
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     search()
@@ -68,30 +70,20 @@ class AddressSearchActivity: AppCompatActivity() {
             }
         })
 
-        searchButton.setOnClickListener {
-            search()
-        }
+    }
 
-        logoButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("http://www.tlsolution.co.kr/")
-            startActivity(intent)
-        }
-
-        providerButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("http://www.juso.go.kr/addrlink/main.do")
-            startActivity(intent)
-        }
-
+    private fun openIntentWithURL(urlString: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(urlString)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && data != null) {
-            val addressWithDetails = data.getSerializableExtra(AddDetailActivity.ADDRS_KEY) as? Address
+            val addressWithDetails = data.getSerializableExtra(AddressDetailActivity.ADDRS_KEY) as? Address
 
-            if (data.getBooleanExtra(AddDetailActivity.EXIT_KEY, false) == true &&
+            if (data.getBooleanExtra(AddressDetailActivity.EXIT_KEY, false) == true &&
                 addressWithDetails != null) {
 
                 val data = Intent()
@@ -102,9 +94,6 @@ class AddressSearchActivity: AppCompatActivity() {
 
         }
     }
-
-    private val confmKey = "U01TX0FVVEgyMDE5MDQyOTE1MTYwNTEwODY5MDE="
-    private val url = "http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
 
     private fun search() {
 
@@ -132,10 +121,10 @@ class AddressSearchActivity: AppCompatActivity() {
                 val jsonString = response.body()?.string()?.replace("(", "")?.replace(")", "")
                 Log.d(TAG, jsonString)
                 if (jsonString == null) return
-                val addressResult = GsonBuilder().create().fromJson(jsonString!!, AddressResponse::class.java)
+                val addressResult = GsonBuilder().create().fromJson(jsonString!!, AddressResult::class.java)
 
                 if (addressResult.results.juso == null || addressResult.results.juso.isEmpty()) {
-                    runOnUiThread { Toast.makeText(this@AddressSearchActivity, "검색 된 결과가 없습니다.", Toast.LENGTH_SHORT).show() }
+                    runOnUiThread { Toast.makeText(this@AddressSearchListActivity, "검색 된 결과가 없습니다.", Toast.LENGTH_SHORT).show() }
                 } else {
                     addresses = addressResult.results.juso
                     dismissKeyboard()
@@ -184,10 +173,10 @@ class AddressSearchActivity: AppCompatActivity() {
         init {
             customView.setOnClickListener {
                 if (address != null) {
-                    val intent = Intent(customView.context, AddDetailActivity::class.java)
+                    val intent = Intent(customView.context, AddressDetailActivity::class.java)
                     intent.putExtra(ADDRESS_KEY, address)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    activity.startActivityForResult(intent, AddressSearchActivity.REQUEST_CODE)
+                    activity.startActivityForResult(intent, AddressSearchListActivity.REQUEST_CODE)
                 }
             }
         }

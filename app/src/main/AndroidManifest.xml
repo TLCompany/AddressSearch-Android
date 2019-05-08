@@ -12,10 +12,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".AddDetailActivity"
+        <activity android:name=".AddressDetailActivity"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".AddressSearchActivity"
+        <activity android:name=".AddressSearchListActivity"
                   android:launchMode="singleTask"
                   android:screenOrientation="portrait">
         </activity>
