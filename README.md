@@ -29,7 +29,7 @@
 ## 데이터 모델
 - Address 모델의 데이터
 | 변수이름 | 타입 | Optional | 설명 | 
-|--------|--------|
+|--------|--------|--------|--------|
 | jibunAddr        | String | Mandatory | 전체주소(번지) |
 | roadAddr        | String | Mandatory | 전체주소(도로명) |
 | roadAddrPart1        | String | Mandatory | 도로명 주소 Part 1 |
