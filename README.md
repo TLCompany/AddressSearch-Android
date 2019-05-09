@@ -1,7 +1,7 @@
 # 대한민국 주소 검색 Library - Android
 ## 소개
 
-- 웹뷰(WebView)가 아닌 **네이티브(Native)**를 사용해서 주소 검색을 할 수 있는 Library입니다. 
+- 웹뷰(WebView)가 아닌 네이티브(Native)를 사용해서 주소 검색을 할 수 있는 Library입니다. 
 - 모바일 플랫폼 iOS와 Android를 각각 네이티브로 지원합니다.
 - iOS 깃헙 URL: https://github.com/TLCompany/AddressSearch-iOS 
 - 주소 검색은 '한국지역 정보 개발원'에서 제공하는 API를 사용하였습니다. (https://www.juso.go.kr/addrlink/getDevEventBoardMainList.do)
@@ -15,7 +15,8 @@
 ![two.png](./Reources/Images/two.png)
 3. Dependency에 들어간 호환 가능한 Java 버전을 compileOptions에 설정해 줍니다. 그리고 애플리케이션의 최소 SDK 버전(minSdkVersion)을 22 이상으로 설정해 줍니다.
 ![three.png](./Reources/Images/three.png)
-4. 마지막으로 build.gradle(Project: 프로젝트이름)에서 allprojects안에 repositories에 maven { url 'https://www.jitpack.io' } 을 추가해 줍니다.
+4. 마지막으로 build.gradle(Project: 프로젝트이름)에서 
+   allprojects안에 repositories에 maven { url 'https://www.jitpack.io' } 을 추가해 줍니다.
 ![one.png](./Reources/Images/one.png)
 
 ## 사용 방법 
@@ -28,22 +29,7 @@
 
 ## 데이터 모델
 - Address 모델의 데이터
-| 변수이름 | 타입 | Optional | 설명 | 
-|--------|--------|--------|--------|
-| jibunAddr        | String | Mandatory | 전체주소(번지) |
-| roadAddr        | String | Mandatory | 전체주소(도로명) |
-| roadAddrPart1        | String | Mandatory | 도로명 주소 Part 1 |
-| roadAddrPart2        | String | Mandatory | 도로명 주소 Part 2 |
-| engAddr        | String | Mandatory | 전체주소(영어) |
-| zipNo        | String | Mandatory | 우편번호 |
-| siNm        | String | Mandatory | 시 명 |
-| sggNm        | String | Mandatory | 시군구 명 |
-| emdNm        | String | Mandatory | 읍면동 명 |
-| liNm        | String | Mandatory | 법정리 명 |
-| rn        | String | Mandatory | 도로명 |
-| lnbrMnnm        | String | Mandatory | 번지 |
-| lnbrSlno        | String | Mandatory | 호 |
-| detail        | String | Mandatory | 상세주소(사용자입력) |
+![data model table.png](./Reources/Images/data model table.png)
 
 ## 개발회사 소개 
 - 우리는 스타트업의 성장을 위한 모바일 통합 개발 솔루션을 통해 성공적인 비즈니스를 만들어갑니다.
