@@ -19,6 +19,7 @@
    allprojects안에 repositories에 maven { url 'https://www.jitpack.io' } 을 추가해 줍니다.
 ![one.png](./Reources/Images/one.png)
 
+
 ## 사용 방법 
 1. 사용할 Activity에 AddressSearchHelper의 객체를 아래의 첨부된 이미지를 참고하시면서 생성해 주세요.
 2. confmKey를 https://www.juso.go.kr/addrlink/getDevEventBoardMainList.do에서 발급받아 주세요.(무료) 
@@ -29,7 +30,10 @@
 
 ## 데이터 모델
 - Address 모델의 데이터
-![data model table.png](./Reources/Images/data model table.png)
+
+![dataModelTable.png](./Reources/Images/dataModelTable.png)
+
+
 
 ## 개발회사 소개 
 - 우리는 스타트업의 성장을 위한 모바일 통합 개발 솔루션을 통해 성공적인 비즈니스를 만들어갑니다.
