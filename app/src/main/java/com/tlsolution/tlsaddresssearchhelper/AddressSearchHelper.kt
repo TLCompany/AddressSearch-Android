@@ -3,6 +3,10 @@ package com.tlsolution.tlsaddresssearchhelper
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
+import com.google.gson.GsonBuilder
+import okhttp3.*
+import java.io.IOException
 
 /**
  *  대한민국 주소 검색을 위한 Helper
@@ -45,10 +49,40 @@ open class AddressSearchHelper {
             return
         }
 
-        val intent = Intent(activity?.baseContext, AddressSearchListActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        activity?.startActivityForResult(intent, REQUEST_CODE_KEY)
+        val url = "http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"
+        val client = OkHttpClient()
+        val body = MultipartBody.Builder().addFormDataPart("confmKey", confmKey)
+            .addFormDataPart("keyword", "동대문")
+            .addFormDataPart("resultType", "json")
+            .addFormDataPart("currentPage", "1")
+            .addFormDataPart("countPerPage", "100")
+            .build()
+        val request = Request.Builder().url(url).post(body).build()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, e.toString())
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val jsonString = response.body()?.string()?.replace("(", "")?.replace(")", "")
+                Log.d(TAG, jsonString)
+                if (jsonString == null) return
+                val addressResult = GsonBuilder().create().fromJson(jsonString!!, AddressResult::class.java)
+
+                activity!!.runOnUiThread {
+                    if (addressResult.results.common.errorCode == "0") {
+                        val intent = Intent(activity?.baseContext, AddressSearchListActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                        activity!!.startActivityForResult(intent, REQUEST_CODE_KEY)
+                    } else {
+                        Toast.makeText(activity!!.baseContext, "유효하지 않은 confmKey입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        })
     }
+
 }
 
 

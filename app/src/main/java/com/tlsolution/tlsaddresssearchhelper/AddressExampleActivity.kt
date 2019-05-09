@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
-class AddressExampleActivity : AppCompatActivity() {
+internal class AddressExampleActivity : AppCompatActivity() {
 
-    lateinit var addressSearchHelper: AddressSearchHelper
-    private val confmKey = "U01TX0FVVEgyMDE5MDQyODE5NTM0NjEwODY4ODQ="
+    private lateinit var addressSearchHelper: AddressSearchHelper
+    private val confmKey = "PUT_YOUR_CONFMKEY_HERE"
 
     companion object {
         val TAG = "AddressExampleActivity"

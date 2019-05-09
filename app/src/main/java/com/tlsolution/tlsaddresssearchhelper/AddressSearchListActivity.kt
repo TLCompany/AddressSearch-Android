@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.address_list_item.view.*
 import okhttp3.*
 import java.io.IOException
 
-class AddressSearchListActivity: AppCompatActivity() {
+internal class AddressSearchListActivity: AppCompatActivity() {
 
     companion object {
         val TAG = "AddressSearchList"

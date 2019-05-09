@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_add_detail.*
 
-class AddressDetailActivity : AppCompatActivity() {
+internal class AddressDetailActivity : AppCompatActivity() {
 
     private var address: Address? = null
 
@@ -29,7 +29,6 @@ class AddressDetailActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
-
 
         completeButton.setOnClickListener {
             if (address == null) return@setOnClickListener

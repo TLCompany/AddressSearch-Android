@@ -18,7 +18,7 @@ import java.io.Serializable
  * @property lnbrSlno 호
  * @property detail 상세주소(사용자입력)
  */
-class Address(val jibunAddr: String,
+public class Address(val jibunAddr: String,
               val roadAddrPart1: String,
               val roadAddrPart2: String?,
               val engAddr: String,
