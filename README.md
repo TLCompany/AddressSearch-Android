@@ -15,7 +15,7 @@
 ![two.png](./Reources/Images/two.png)
 3. Dependency에 들어간 호환 가능한 Java 버전을 compileOptions에 설정해 줍니다. 그리고 애플리케이션의 최소 SDK 버전(minSdkVersion)을 22 이상으로 설정해 줍니다.
 ![three.png](./Reources/Images/three.png)
-4. 마지막으로 build.gradle(Project: 프로젝트이름)에서 allprojects안에 repositories에 **maven { url 'https://www.jitpack.io' }** 을 추가해 줍니다.
+4. 마지막으로 build.gradle(Project: 프로젝트이름)에서 allprojects안에 repositories에 maven { url 'https://www.jitpack.io' } 을 추가해 줍니다.
 ![one.png](./Reources/Images/one.png)
 
 ## 사용 방법 
