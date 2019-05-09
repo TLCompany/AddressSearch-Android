@@ -9,8 +9,8 @@ import java.io.Serializable
  * @property roadAddrPart2 도로명 주소 Part 2
  * @property engAddr 전체주소(영어)
  * @property zipNo 우편번호
- * @property siNm 시 이름
- * @property sggNm 시군구
+ * @property siNm 시 명
+ * @property sggNm 시군구 명
  * @property emdNm 읍면동 명
  * @property liNm 법정리 명
  * @property rn 도로명
